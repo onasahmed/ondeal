@@ -1,0 +1,11 @@
+require('dotenv').config();
+
+module.exports = {
+  VITE_SECRET_API_KEY: import.meta.env.VITE_SECRET_API_KEY,
+  VITE_SECRET_AUTH_DOMAIN: import.meta.env.VITE_SECRET_AUTH_DOMAIN,
+  VITE_SECRET_PROJECT_ID: import.meta.env.VITE_SECRET_PROJECT_ID,
+  VITE_SECRET_STORAGE_BUCKET: import.meta.env.VITE_SECRET_STORAGE_BUCKET,
+  VITE_SECRET_MESSAGING_SENDER_ID: import.meta.env.VITE_SECRET_MESSAGING_SENDER_ID,
+  VITE_SECRET_APP_ID: import.meta.env.VITE_SECRET_APP_ID,
+};
+
