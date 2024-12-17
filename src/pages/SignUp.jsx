@@ -78,8 +78,7 @@ const SignUp = () => {
   }
   return (
     <div
-      className='flex items-center justify-center min-h-screen'
-      style={{ backgroundColor: '#DAF1DE' }}
+      className='flex items-center justify-center min-h-screen  bg-[#DAF1DE]'
     >
       {' '}
       {/* Overlay Spinner */}
@@ -90,15 +89,12 @@ const SignUp = () => {
       )}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='p-8 rounded-lg shadow-lg w-1/3'
-        style={{
-          backgroundColor: '#C8CFAE',
-          border: `1px solid #3D6A53`
-        }}
+        className='p-8 rounded-lg shadow-lg w-1/3 bg-[#C8CFAE] border border-[#3D6A53]'
+      
       >
         <h2
-          className='text-center text-2xl font-bold mb-6'
-          style={{ color: '#3D6A53' }}
+          className='text-center text-2xl font-bold mb-6  text-[#3D6A53]'
+      
         >
           Sign Up
         </h2>
@@ -107,20 +103,16 @@ const SignUp = () => {
         <div className='mb-4'>
           <label
             htmlFor='name'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1  text-[#3D6A53]'
+      
           >
             Name
           </label>
           <input
             id='name'
             type='text'
-            className='w-full px-4 py-2 mt-1 rounded-lg'
-            style={{
-              border: `1px solid #567D5B`,
-              backgroundColor: '#F9FAFB',
-              color: '#3D6A53'
-            }}
+            className='w-full px-4 py-2 mt-1 rounded-lg  border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+          
             {...register('name', { required: 'Name is required' })}
           />
           {errors.name && (
@@ -132,20 +124,16 @@ const SignUp = () => {
         <div className='mb-4'>
           <label
             htmlFor='email'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1 text-[#3D6A53]'
+          
           >
             Email
           </label>
           <input
             id='email'
             type='email'
-            className='w-full px-4 py-2 mt-1 rounded-lg'
-            style={{
-              border: `1px solid #567D5B`,
-              backgroundColor: '#F9FAFB',
-              color: '#3D6A53'
-            }}
+            className='w-full px-4 py-2 mt-1 rounded-lg  border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+          
             {...register('email', { required: 'Email is required' })}
           />
           {errors.email && (
@@ -157,20 +145,16 @@ const SignUp = () => {
         <div className='mb-6 relative'>
           <label
             htmlFor='password'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1 text-[#3D6A53]'
+    
           >
             Password
           </label>
           <input
             id='password'
             type={showPassword ? 'text' : 'password'}
-            className='w-full px-4 py-2 mt-1 rounded-lg'
-            style={{
-              border: `1px solid #567D5B`,
-              backgroundColor: '#F9FAFB',
-              color: '#3D6A53'
-            }}
+            className='w-full px-4 py-2 mt-1 rounded-lg  border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+    
             {...register('password', {
               required: 'Password is required',
               pattern: {
@@ -197,11 +181,8 @@ const SignUp = () => {
         {/* Submit Button */}
         <button
           type='submit'
-          className='w-full py-2 rounded-lg font-semibold'
-          style={{
-            backgroundColor: '#3D6A53',
-            color: '#F9FAFB'
-          }}
+          className='w-full py-2 rounded-lg font-semibold bg-[#3D6A53]  text-[#F9FAFB]'
+      
         >
           Submit
         </button>

@@ -97,8 +97,8 @@ const Login = () => {
         <div className='mb-4'>
           <label
             htmlFor='email'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1 text-[#3D6A53]'
+    
           >
             Email
           </label>
