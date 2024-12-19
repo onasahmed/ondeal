@@ -11,7 +11,8 @@ import {
   FaTwitter
 } from 'react-icons/fa'
 import Swal from 'sweetalert2'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 const SignUp = () => {
   const { handleSignUp, setLoading, logOut } = useContext(AuthContext)
   const [showPassword, setShowPassword] = useState(false)
@@ -39,7 +40,7 @@ const SignUp = () => {
       await updateProfile(result.user, {
         displayName: name
       })
-      const response = await fetch('http://localhost:5001/allusers', {
+      const response = await fetch('http://localhost:5000/allusers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -47,7 +48,7 @@ const SignUp = () => {
         body: JSON.stringify({ name, email, password })
       })
       const responseData = await response.json()
-      console.log(responseData);
+      console.log(responseData)
       if (!response.ok) {
         setErrorMessage('An unexpected error occurred. Please try again.')
       }
@@ -77,10 +78,7 @@ const SignUp = () => {
     }
   }
   return (
-    <div
-      className='flex items-center justify-center min-h-screen'
-      style={{ backgroundColor: '#DAF1DE' }}
-    >
+    <div className='flex items-center justify-center min-h-screen w-[1400px] mx-auto bg-[#FCD367]'>
       {' '}
       {/* Overlay Spinner */}
       {spinner && (
@@ -88,18 +86,14 @@ const SignUp = () => {
           <CgSpinner className='animate-spin h-16 w-16' />
         </div>
       )}
+      <Helmet>
+        <title>Ondeal | Sign Up</title>
+      </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='p-8 rounded-lg shadow-lg w-1/3'
-        style={{
-          backgroundColor: '#C8CFAE',
-          border: `1px solid #3D6A53`
-        }}
+        className='p-8 rounded-lg shadow-lg w-1/3 bg-[#28231D] border border-[#FCD367]'
       >
-        <h2
-          className='text-center text-2xl font-bold mb-6'
-          style={{ color: '#3D6A53' }}
-        >
+        <h2 className='text-center text-2xl font-bold mb-6  text-white'>
           Sign Up
         </h2>
 
@@ -107,24 +101,20 @@ const SignUp = () => {
         <div className='mb-4'>
           <label
             htmlFor='name'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1  text-[#FCD367]'
           >
             Name
           </label>
           <input
             id='name'
             type='text'
-            className='w-full px-4 py-2 mt-1 rounded-lg'
-            style={{
-              border: `1px solid #567D5B`,
-              backgroundColor: '#F9FAFB',
-              color: '#3D6A53'
-            }}
+            className='w-full px-4 py-2 mt-1 rounded-lg  bg-[#F9FAFB] text-black'
             {...register('name', { required: 'Name is required' })}
           />
           {errors.name && (
-            <span className='text-red-500 text-sm'>{errors.name.message}</span>
+            <span className='text-[#FCD367] text-sm'>
+              {errors.name.message}
+            </span>
           )}
         </div>
 
@@ -132,24 +122,20 @@ const SignUp = () => {
         <div className='mb-4'>
           <label
             htmlFor='email'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1  text-[#FCD367]'
           >
             Email
           </label>
           <input
             id='email'
             type='email'
-            className='w-full px-4 py-2 mt-1 rounded-lg'
-            style={{
-              border: `1px solid #567D5B`,
-              backgroundColor: '#F9FAFB',
-              color: '#3D6A53'
-            }}
+            className='w-full px-4 py-2 mt-1 rounded-lg bg-[#F9FAFB] text-black'
             {...register('email', { required: 'Email is required' })}
           />
           {errors.email && (
-            <span className='text-red-500 text-sm'>{errors.email.message}</span>
+            <span className='text-[#FCD367] text-sm'>
+              {errors.email.message}
+            </span>
           )}
         </div>
 
@@ -157,20 +143,14 @@ const SignUp = () => {
         <div className='mb-6 relative'>
           <label
             htmlFor='password'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1  text-[#FCD367]'
           >
             Password
           </label>
           <input
             id='password'
             type={showPassword ? 'text' : 'password'}
-            className='w-full px-4 py-2 mt-1 rounded-lg'
-            style={{
-              border: `1px solid #567D5B`,
-              backgroundColor: '#F9FAFB',
-              color: '#3D6A53'
-            }}
+            className='w-full px-4 py-2 mt-1 rounded-lg bg-[#F9FAFB] text-black'
             {...register('password', {
               required: 'Password is required',
               pattern: {
@@ -188,7 +168,7 @@ const SignUp = () => {
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </button>
           {errors.password && (
-            <span className='text-red-500 text-sm'>
+            <span className='text-[#FCD367] text-sm'>
               {errors.password.message}
             </span>
           )}
@@ -197,26 +177,22 @@ const SignUp = () => {
         {/* Submit Button */}
         <button
           type='submit'
-          className='w-full py-2 rounded-lg font-semibold'
-          style={{
-            backgroundColor: '#3D6A53',
-            color: '#F9FAFB'
-          }}
+          className='w-full py-2 rounded-lg font-semibold bg-[#FCD367] text-black hover:bg-white'
         >
           Submit
         </button>
         {errorMessage ? (
-          <p className='text-red-700 mt-2'>{errorMessage}</p>
+          <p className='text-[#FCD367] mt-2'>{errorMessage}</p>
         ) : (
           ''
         )}
 
         {/* Already Have an Account */}
-        <p className='mt-4 text-center text-sm'>
+        <p className='mt-4 text-white text-center text-sm'>
           Already have an account?{' '}
           <Link
             to='/login'
-            className='font-medium text-blue-600 hover:underline'
+            className='font-medium text-[#FCD367] hover:underline'
           >
             Login Now
           </Link>
@@ -226,21 +202,21 @@ const SignUp = () => {
         <div className='mt-6 flex justify-center gap-4'>
           <button
             type='button'
-            className='p-2 rounded-full bg-white shadow-lg hover:bg-gray-100'
+            className='p-2 rounded-full bg-[#FCD367] shadow-lg hover:bg-gray-100'
           >
-            <FaGoogle className='text-red-500' />
+            <FaGoogle className='text-black' />
           </button>
           <button
             type='button'
-            className='p-2 rounded-full bg-white shadow-lg hover:bg-gray-100'
+            className='p-2 rounded-full bg-[#FCD367] shadow-lg hover:bg-gray-100'
           >
-            <FaFacebook className='text-blue-600' />
+            <FaFacebook className='text-black' />
           </button>
           <button
             type='button'
-            className='p-2 rounded-full bg-white shadow-lg hover:bg-gray-100'
+            className='p-2 rounded-full bg-[#FCD367] shadow-lg hover:bg-gray-100'
           >
-            <FaTwitter className='text-blue-400' />
+            <FaTwitter className='text-black' />
           </button>
         </div>
       </form>

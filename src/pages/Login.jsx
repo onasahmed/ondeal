@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../provider/AuthProvider'
-import { updateProfile } from 'firebase/auth'
 import {
   FaEye,
   FaEyeSlash,
@@ -12,6 +11,7 @@ import {
 import Swal from 'sweetalert2'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { CgSpinner } from 'react-icons/cg'
+import { Helmet } from 'react-helmet-async'
 const Login = () => {
   const { handleLogIn, setLoading, logOut } = useContext(AuthContext)
   const [showPassword, setShowPassword] = useState(false)
@@ -38,8 +38,8 @@ const Login = () => {
         const { user } = currentUser
         
         Swal.fire({
-          title: 'Welcome to InkFlow',
-          text: `Happy Learning`,
+          title: 'Welcome to Ondeal',
+          text: `Happy Shopping`,
           icon: 'info',
           width: '350px',
           customClass: {
@@ -74,7 +74,7 @@ const Login = () => {
   }
   return (
     <div
-      className='flex items-center justify-center min-h-screen bg-[#DAF1DE]'
+      className='flex items-center justify-center min-h-screen bg-[#FCD367] w-[1400px] mx-auto'
     >
       {/* Overlay Spinner */}
       {spinner && (
@@ -82,13 +82,16 @@ const Login = () => {
           <CgSpinner className='animate-spin h-16 w-16' />
         </div>
       )}
+      <Helmet>
+        <title>Ondeal | Login</title>
+      </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='p-8 rounded-lg shadow-lg w-1/3 bg-[#C8CFAE] border border-[#3D6A53]
+        className='p-8 rounded-lg shadow-lg w-1/3 bg-[#28231D]
         '
       >
         <h2
-          className='text-center text-2xl font-bold mb-6 text-[#3D6A53]'
+          className='text-center text-2xl font-bold mb-6 text-white'
     
         >
           Log In
@@ -97,19 +100,18 @@ const Login = () => {
         <div className='mb-4'>
           <label
             htmlFor='email'
-            className='block text-sm font-medium mb-1'
-            style={{ color: '#3D6A53' }}
+            className='block text-sm font-medium mb-1  text-[#FCD367]'
           >
             Email
           </label>
           <input
             id='email'
             type='email'
-            className='w-full px-4 py-2 mt-1 rounded-lg border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+            className='w-full px-4 py-2 mt-1 rounded-lg bg-[#F9FAFB] text-black'
             {...register('email', { required: 'Email is required' })}
           />
           {errors.email && (
-            <span className='text-red-500 text-sm'>{errors.email.message}</span>
+            <span className='text-[#FCD367] text-sm'>{errors.email.message}</span>
           )}
         </div>
 
@@ -117,7 +119,7 @@ const Login = () => {
         <div className='mb-6 relative'>
           <label
             htmlFor='password'
-            className='block text-sm font-medium mb-1 text-[#3D6A53]'
+            className='block text-sm font-medium mb-1 text-[#FCD367]'
       
           >
             Password
@@ -125,7 +127,7 @@ const Login = () => {
           <input
             id='password'
             type={showPassword ? 'text' : 'password'}
-            className='w-full px-4 py-2 mt-1 rounded-lg border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+            className='w-full px-4 py-2 mt-1 rounded-lg bg-[#F9FAFB] text-black'
            
             {...register('password', { required: 'Password is required' })}
           />
@@ -137,7 +139,7 @@ const Login = () => {
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </button>
           {errors.password && (
-            <span className='text-red-500 text-sm'>
+            <span className='text-[#FCD367] text-sm'>
               {errors.password.message}
             </span>
           )}
@@ -147,7 +149,7 @@ const Login = () => {
         <div className='text-right mb-4'>
           <Link
             to='/forgot-password'
-            className='text-sm font-medium text-blue-600 hover:underline'
+            className='text-sm font-medium text-[#FCD367] hover:underline'
           >
             Forgot Password?
           </Link>
@@ -156,19 +158,19 @@ const Login = () => {
         {/* Submit Button */}
         <button
           type='submit'
-          className='w-full py-2 rounded-lg font-semibold bg-[#3D6A53] text-[#F9FAFB]'
+          className='w-full py-2 rounded-lg font-semibold bg-[#FCD367] hover:bg-white text-black'
         >
           Submit
         </button>
         {errorMessage ? (
-          <p className='text-red-700 mt-2'>{errorMessage}</p>
+          <p className='text-[#FCD367] mt-2'>{errorMessage}</p>
         ) : (
           ''
         )}
         {/* Already Have an Account */}
-        <p className='mt-4 text-center text-sm'>
+        <p className='mt-4 text-center text-white text-sm'>
           Don't have an account?{' '}
-          <Link to='/signup' className='font-medium text-blue-600 hover:underline'>
+          <Link to='/signup' className='font-medium text-[#FCD367] hover:underline'>
             Register Now
           </Link>
         </p>
@@ -177,21 +179,21 @@ const Login = () => {
         <div className='mt-6 flex justify-center gap-4'>
           <button
             type='button'
-            className='p-2 rounded-full bg-white shadow-lg hover:bg-gray-100'
+            className='p-2 rounded-full bg-[#FCD367] shadow-lg hover:bg-gray-100'
           >
-            <FaGoogle className='text-red-500' />
+            <FaGoogle className='text-black' />
           </button>
           <button
             type='button'
-            className='p-2 rounded-full bg-white shadow-lg hover:bg-gray-100'
+            className='p-2 rounded-full bg-[#FCD367] shadow-lg hover:bg-gray-100'
           >
-            <FaFacebook className='text-blue-600' />
+            <FaFacebook className='text-black' />
           </button>
           <button
             type='button'
-            className='p-2 rounded-full bg-white shadow-lg hover:bg-gray-100'
+            className='p-2 rounded-full bg-[#FCD367] shadow-lg hover:bg-gray-100'
           >
-            <FaTwitter className='text-blue-400' />
+            <FaTwitter className='text-black' />
           </button>
         </div>
       </form>

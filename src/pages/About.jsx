@@ -1,12 +1,10 @@
 import { useContext } from 'react'
-import useAllUser from '../hooks/useAllUser'
 import useProducts from '../hooks/useProducts'
 import { AuthContext } from '../provider/AuthProvider'
 import { CgSpinner } from 'react-icons/cg'
 
 const About = () => {
   const { loading } = useContext(AuthContext)
-  const [users] = useAllUser()
  
   const [products, refetch] = useProducts()
   return (
@@ -19,9 +17,7 @@ const About = () => {
       )}
       <div>
         <h1 className='text-red-800'>This is users:</h1>
-        {users?.map(user => (
-          <p key={user.id}>{user.name}</p>
-        ))}
+       
         <h1 className='text-red-800'>This is products:</h1>
         {products?.map(product => (
           <p key={product._id}>{product.name}</p>

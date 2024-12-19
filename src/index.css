@@ -1,11 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-body {
-  font-family: 'Poppins', sans-serif;
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body{
-  background-color: white!important;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: white !important;
   color: black;
+}
+.active {
+  background: black !important;
+  color: #fcd367 !important;
+  font-weight: 700 !important;
+}
+@layer components {
+  .btn {
+    background-color: #fcd367 !important;
+    color: black !important;
+    border: none !important;
+    font-weight: 700 !important;
+    box-shadow: none!important;
+  }
+  input:-webkit-autofill {
+    background-color: #F9FAFB !important; /* Your desired background */
+    color: black !important; /* Ensure text color remains black */
+    -webkit-text-fill-color: black !important; /* Overrides autofill text color */
+    -webkit-box-shadow: 0 0 0px 1000px #F9FAFB inset !important; /* Fix shadow issue */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent autofill animation */
+  }
+  
+  input:-webkit-autofill:focus {
+    color: black !important; /* Ensure text remains black when focused */
+    -webkit-text-fill-color: black !important;
+  }
+  
 }
