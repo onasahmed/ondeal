@@ -78,7 +78,13 @@ const SignUp = () => {
     }
   }
   return (
+<<<<<<< HEAD
     <div className='flex items-center justify-center min-h-screen w-[1400px] mx-auto bg-[#FCD367]'>
+=======
+    <div
+      className='flex items-center justify-center min-h-screen  bg-[#DAF1DE]'
+    >
+>>>>>>> origin/main
       {' '}
       {/* Overlay Spinner */}
       {spinner && (
@@ -91,9 +97,19 @@ const SignUp = () => {
       </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
+<<<<<<< HEAD
         className='p-8 rounded-lg shadow-lg w-1/3 bg-[#28231D] border border-[#FCD367]'
       >
         <h2 className='text-center text-2xl font-bold mb-6  text-white'>
+=======
+        className='p-8 rounded-lg shadow-lg w-1/3 bg-[#C8CFAE] border border-[#3D6A53]'
+      
+      >
+        <h2
+          className='text-center text-2xl font-bold mb-6  text-[#3D6A53]'
+      
+        >
+>>>>>>> origin/main
           Sign Up
         </h2>
 
@@ -101,14 +117,24 @@ const SignUp = () => {
         <div className='mb-4'>
           <label
             htmlFor='name'
+<<<<<<< HEAD
             className='block text-sm font-medium mb-1  text-[#FCD367]'
+=======
+            className='block text-sm font-medium mb-1  text-[#3D6A53]'
+      
+>>>>>>> origin/main
           >
             Name
           </label>
           <input
             id='name'
             type='text'
+<<<<<<< HEAD
             className='w-full px-4 py-2 mt-1 rounded-lg  bg-[#F9FAFB] text-black'
+=======
+            className='w-full px-4 py-2 mt-1 rounded-lg  border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+          
+>>>>>>> origin/main
             {...register('name', { required: 'Name is required' })}
           />
           {errors.name && (
@@ -122,14 +148,24 @@ const SignUp = () => {
         <div className='mb-4'>
           <label
             htmlFor='email'
+<<<<<<< HEAD
             className='block text-sm font-medium mb-1  text-[#FCD367]'
+=======
+            className='block text-sm font-medium mb-1 text-[#3D6A53]'
+          
+>>>>>>> origin/main
           >
             Email
           </label>
           <input
             id='email'
             type='email'
+<<<<<<< HEAD
             className='w-full px-4 py-2 mt-1 rounded-lg bg-[#F9FAFB] text-black'
+=======
+            className='w-full px-4 py-2 mt-1 rounded-lg  border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+          
+>>>>>>> origin/main
             {...register('email', { required: 'Email is required' })}
           />
           {errors.email && (
@@ -143,14 +179,24 @@ const SignUp = () => {
         <div className='mb-6 relative'>
           <label
             htmlFor='password'
+<<<<<<< HEAD
             className='block text-sm font-medium mb-1  text-[#FCD367]'
+=======
+            className='block text-sm font-medium mb-1 text-[#3D6A53]'
+    
+>>>>>>> origin/main
           >
             Password
           </label>
           <input
             id='password'
             type={showPassword ? 'text' : 'password'}
+<<<<<<< HEAD
             className='w-full px-4 py-2 mt-1 rounded-lg bg-[#F9FAFB] text-black'
+=======
+            className='w-full px-4 py-2 mt-1 rounded-lg  border border-[#567D5B] bg-[#F9FAFB] text-[#3D6A53]'
+    
+>>>>>>> origin/main
             {...register('password', {
               required: 'Password is required',
               pattern: {
@@ -177,7 +223,12 @@ const SignUp = () => {
         {/* Submit Button */}
         <button
           type='submit'
+<<<<<<< HEAD
           className='w-full py-2 rounded-lg font-semibold bg-[#FCD367] text-black hover:bg-white'
+=======
+          className='w-full py-2 rounded-lg font-semibold bg-[#3D6A53]  text-[#F9FAFB]'
+      
+>>>>>>> origin/main
         >
           Submit
         </button>

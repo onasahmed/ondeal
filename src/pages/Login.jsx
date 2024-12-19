@@ -100,7 +100,12 @@ const Login = () => {
         <div className='mb-4'>
           <label
             htmlFor='email'
+<<<<<<< HEAD
             className='block text-sm font-medium mb-1  text-[#FCD367]'
+=======
+            className='block text-sm font-medium mb-1 text-[#3D6A53]'
+    
+>>>>>>> origin/main
           >
             Email
           </label>
