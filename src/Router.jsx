@@ -8,6 +8,7 @@ import ResetPassword from './pages/ResetPassword'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Home from './pages/Home'
+import ProductDetails from './pages/ProductDetails'
 
 export const router = createBrowserRouter(
   [
@@ -31,9 +32,15 @@ export const router = createBrowserRouter(
         {
           path: '/profile',
           element: <Profile></Profile>
+        },
+        {
+          path: '/products/:id',
+          element: <ProductDetails></ProductDetails>,
+          errorElement: <ErrorPage></ErrorPage>
         }
       ]
     },
+
     {
       path: '/signup',
       element: <SignUp></SignUp>,

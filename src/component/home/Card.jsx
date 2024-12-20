@@ -66,8 +66,9 @@ const Card = ({ item }) => {
   }
 
   const handleCardClick = () => {
-    navigate(`/products/${item.id}`)
+    navigate(`/products/${item.id}`, { state: { item } })
   }
+
   return (
     <div className='bg-white border border-[#FCD367] shadow-md rounded-lg overflow-hidden cursor-pointer'>
       {/* Item Image */}
