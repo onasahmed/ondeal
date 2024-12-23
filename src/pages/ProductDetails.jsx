@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import useAddToCart from '../hooks/useAddToCart'
+import { AuthContext } from '../provider/AuthProvider'
 
 const ProductDetails = () => {
   const { id } = useParams() // Extract the ID from the route params
   const { state } = useLocation() // Access the state object from navigation
   const item = state?.item // Retrieve the passed item data
-
+  const { handleAddToCart } = useAddToCart()
+  const {user} = useContext(AuthContext)
   // If no data is passed, handle it (e.g., fetch the product details based on the id)
   if (!item) {
     return <div>Loading product details...</div>
@@ -45,12 +48,7 @@ const ProductDetails = () => {
       2
     )}. Could you please provide more details?`
     const encodedMessage = encodeURIComponent(message)
-    window.open(`https://m.me/OnasAhmed31?ref=${encodedMessage}`, '_blank')
-  }
-
-  const handleAddToCart = () => {
-    // Add your cart functionality here
-    console.log(`Added ${title} to cart`)
+    window.open(`https://wa.me/8801904324917?text=${encodedMessage}`, '_blank')
   }
 
   return (
@@ -99,7 +97,7 @@ const ProductDetails = () => {
           {/* Add to Cart and Buy Now Buttons */}
           <div className='mt-6 flex space-x-4'>
             <button
-              onClick={handleAddToCart}
+              onClick={() => handleAddToCart(item, user)}
               className='bg-[#FCD367] text-black px-6 py-3 rounded-lg font-semibold hover:bg-[#fcbf40] transition'
             >
               Add to Cart

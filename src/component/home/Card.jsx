@@ -1,69 +1,12 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../provider/AuthProvider'
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import useAxiosIntercept from '../../hooks/useAxiosIntercept'
+
+import useAddToCart from '../../hooks/useAddToCart'
 const Card = ({ item }) => {
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
-  const axiosInstance = useAxiosIntercept()
-  const handleCardInfo = async item => {
-    const result = {
-      item
-    }
-    if (user && user?.email) {
-      try {
-        await axiosInstance
-          .post('/cart', {
-            result: {
-              ...result, // Spread the existing result object
-              item: {
-                ...result.item, // Ensure you're working with the nested item object
-                email: user?.email // Add the email field
-              }
-            }
-          })
-
-          .then(function (response) {
-            console.log(response)
-            if (response.data) {
-              // refetch()
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success', // this will set the default icon but will be overridden by custom HTML
-                title: `<span style="color: black; font-weight: bold;">Item Added to Cart</span>`,
-                html: `
-                  <div style="display: flex; align-items: center; color: #666; font-size: 14px;">
-                    <div style="margin-right: 10px;">
-                      <FaCartPlus style="color: #FCD367; font-size: 24px;" />
-                    </div>
-                    <p style="margin: 0;">You can view your cart or continue shopping.</p>
-                  </div>
-                `,
-                showConfirmButton: true,
-                confirmButtonText: 'View Cart',
-                confirmButtonColor: '#FCD367',
-                cancelButtonText: 'Continue Shopping',
-                showCancelButton: true,
-                cancelButtonColor: 'black',
-                timer: 3000,
-                background: '#fff9e5',
-                customClass: {
-                  popup: 'rounded-lg shadow-md' // You can use Tailwind or other styles directly here
-                }
-              })
-
-              // navigate(`/cart/${result._id}`); // Uncomment if you want to navigate
-            }
-          })
-      } catch (error) {
-        console.error(error)
-      }
-    } else {
-      navigate('/login', { state: { from: location } })
-    }
-  }
+  const { handleAddToCart } = useAddToCart()
 
   const handleCardClick = () => {
     navigate(`/products/${item.id}`, { state: { item } })
@@ -132,9 +75,11 @@ const Card = ({ item }) => {
         <div className='mt-4 flex justify-center'>
           <button
             className='bg-black text-white px-4 py-2 text-sm rounded hover:bg-[#FCD367] hover:text-black'
-            onClick={() => {
-              handleCardInfo(item)
-            }}
+            //   onClick={() => {
+            //     handleCardInfo(item)
+            //   }
+            // }
+            onClick={() => handleAddToCart(item, user)}
           >
             Add to Cart
           </button>
