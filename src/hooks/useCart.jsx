@@ -7,10 +7,10 @@ const useCart = () => {
   const axiosInstance = useAxiosIntercept()
   const email = user?.providerData[0].email || user?.email
   const { data: cart = [], refetch } = useQuery({
-    queryKey: ['products', email],
+    queryKey: ['cart', email],
     enabled: !!email && !loading,
     queryFn: async () => {
-      const response = await axiosInstance.get(`/cart/${email}`)
+      const response = await axiosInstance.get(`/cart?email=${email}`)
       return response.data
     }
   })

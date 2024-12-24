@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAxiosIntercept from './useAxiosIntercept'
+import useCart from './useCart'
 
 const useAddToCart = () => {
   const navigate = useNavigate()
+  const [cart, refetch] = useCart()
   const axiosInstance = useAxiosIntercept()
+  const location = useLocation()
   const handleAddToCart = async (item, user) => {
     const result = { item }
 
@@ -16,13 +19,13 @@ const useAddToCart = () => {
               ...result,
               item: {
                 ...result.item,
-                email: user?.email // Add email to the nested object
+                email: user?.email 
               }
             }
           })
           .then(function (response) {
             if (response.data) {
-            //   if (refetch) refetch() 
+              if (refetch) refetch() 
               Swal.fire({
                 position: 'top-end',
                 icon: 'success',

@@ -1,15 +1,16 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../provider/AuthProvider'
 
 import useAddToCart from '../../hooks/useAddToCart'
 const Card = ({ item }) => {
+  const location = useLocation()
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const { handleAddToCart } = useAddToCart()
 
   const handleCardClick = () => {
-    navigate(`/products/${item.id}`, { state: { item } })
+    navigate(`/products/${item.id}`)
   }
 
   return (
@@ -75,10 +76,6 @@ const Card = ({ item }) => {
         <div className='mt-4 flex justify-center'>
           <button
             className='bg-black text-white px-4 py-2 text-sm rounded hover:bg-[#FCD367] hover:text-black'
-            //   onClick={() => {
-            //     handleCardInfo(item)
-            //   }
-            // }
             onClick={() => handleAddToCart(item, user)}
           >
             Add to Cart

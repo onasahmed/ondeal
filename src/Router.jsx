@@ -6,9 +6,9 @@ import PrivateRoute from './shared/PrivateRoute'
 import SignUp from './pages/SignUp'
 import ResetPassword from './pages/ResetPassword'
 import Login from './pages/Login'
-import Profile from './pages/Profile'
 import Home from './pages/Home'
 import ProductDetails from './pages/ProductDetails'
+import Cart from './pages/Cart'
 
 export const router = createBrowserRouter(
   [
@@ -30,8 +30,8 @@ export const router = createBrowserRouter(
           )
         },
         {
-          path: '/profile',
-          element: <Profile></Profile>
+          path: '/cart',
+          element: <Cart></Cart>
         },
         {
           path: '/products/:id',

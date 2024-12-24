@@ -1,18 +1,39 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import useAddToCart from '../hooks/useAddToCart'
 import { AuthContext } from '../provider/AuthProvider'
+import axios from 'axios'
 
 const ProductDetails = () => {
   const { id } = useParams() // Extract the ID from the route params
-  const { state } = useLocation() // Access the state object from navigation
-  const item = state?.item // Retrieve the passed item data
   const { handleAddToCart } = useAddToCart()
-  const {user} = useContext(AuthContext)
-  // If no data is passed, handle it (e.g., fetch the product details based on the id)
-  if (!item) {
-    return <div>Loading product details...</div>
-  }
+  const { user } = useContext(AuthContext)
+
+  const [item, setItem] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [currentThumbnail, setCurrentThumbnail] = useState(null) // Initialize with null
+
+  useEffect(() => {
+    // Fetch the product details using the ID
+    const fetchProductDetails = async () => {
+      try {
+        const response = await axios.get(`https://dummyjson.com/products/${id}`)
+        const product = response.data
+        setItem(product)
+        setCurrentThumbnail(product.thumbnail) // Update thumbnail after fetching the product
+        setLoading(false)
+      } catch (err) {
+        setError('Failed to fetch product details')
+        setLoading(false)
+      }
+    }
+
+    fetchProductDetails()
+  }, [id])
+
+  if (loading) return <div>Loading product details...</div>
+  if (error) return <div>{error}</div>
 
   const {
     title,
@@ -22,22 +43,9 @@ const ProductDetails = () => {
     discountPercentage,
     rating,
     stock,
-    tags,
     brand,
-    sku,
-    weight,
-    dimensions,
-    warrantyInformation,
-    shippingInformation,
-    availabilityStatus,
-    returnPolicy,
-    minimumOrderQuantity,
-    meta,
-    images,
-    thumbnail
+    images
   } = item
-
-  const [currentThumbnail, setCurrentThumbnail] = useState(thumbnail)
 
   const handleThumbnailClick = image => {
     setCurrentThumbnail(image)

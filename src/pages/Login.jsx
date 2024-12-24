@@ -9,7 +9,7 @@ import {
   FaTwitter
 } from 'react-icons/fa'
 import Swal from 'sweetalert2'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { CgSpinner } from 'react-icons/cg'
 import { Helmet } from 'react-helmet-async'
 const Login = () => {
@@ -25,6 +25,9 @@ const Login = () => {
     reset
   } = useForm()
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state?.from?.pathname || '/'
+  console.log(from)
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
@@ -36,7 +39,7 @@ const Login = () => {
     await handleLogIn(email, password)
       .then(currentUser => {
         const { user } = currentUser
-        
+
         Swal.fire({
           title: 'Welcome to Ondeal',
           text: `Happy Shopping`,
@@ -47,9 +50,8 @@ const Login = () => {
             title: 'text-lg font-semibold',
             content: 'text-sm'
           }
-         
         })
-        navigate('/profile')
+        navigate(from)
         console.log('logged in User', user)
       })
       .catch(error => {
@@ -73,9 +75,7 @@ const Login = () => {
     setSpinner(false)
   }
   return (
-    <div
-      className='flex items-center justify-center min-h-screen bg-[#FCD367] w-[1400px] mx-auto'
-    >
+    <div className='flex items-center justify-center min-h-screen bg-[#FCD367] w-[1400px] mx-auto'>
       {/* Overlay Spinner */}
       {spinner && (
         <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 z-10'>
@@ -90,10 +90,7 @@ const Login = () => {
         className='p-8 rounded-lg shadow-lg w-1/3 bg-[#28231D]
         '
       >
-        <h2
-          className='text-center text-2xl font-bold mb-6 text-white'
-    
-        >
+        <h2 className='text-center text-2xl font-bold mb-6 text-white'>
           Log In
         </h2>
         {/* Email Field */}
@@ -101,7 +98,6 @@ const Login = () => {
           <label
             htmlFor='email'
             className='block text-sm font-medium mb-1  text-[#FCD367]'
-  
           >
             Email
           </label>
@@ -112,7 +108,9 @@ const Login = () => {
             {...register('email', { required: 'Email is required' })}
           />
           {errors.email && (
-            <span className='text-[#FCD367] text-sm'>{errors.email.message}</span>
+            <span className='text-[#FCD367] text-sm'>
+              {errors.email.message}
+            </span>
           )}
         </div>
 
@@ -121,7 +119,6 @@ const Login = () => {
           <label
             htmlFor='password'
             className='block text-sm font-medium mb-1 text-[#FCD367]'
-      
           >
             Password
           </label>
@@ -129,7 +126,6 @@ const Login = () => {
             id='password'
             type={showPassword ? 'text' : 'password'}
             className='w-full px-4 py-2 mt-1 rounded-lg bg-[#F9FAFB] text-black'
-           
             {...register('password', { required: 'Password is required' })}
           />
           <button
@@ -171,7 +167,10 @@ const Login = () => {
         {/* Already Have an Account */}
         <p className='mt-4 text-center text-white text-sm'>
           Don't have an account?{' '}
-          <Link to='/signup' className='font-medium text-[#FCD367] hover:underline'>
+          <Link
+            to='/signup'
+            className='font-medium text-[#FCD367] hover:underline'
+          >
             Register Now
           </Link>
         </p>
